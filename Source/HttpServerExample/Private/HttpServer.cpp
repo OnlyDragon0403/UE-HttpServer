@@ -38,12 +38,9 @@ void AHttpServer::StartServer()
 	}
 
 	FHttpServerModule& httpServerModule = FHttpServerModule::Get();
-	TSharedPtr<IHttpRouter> httpRouter = httpServerModule.GetHttpRouter(ServerPort);
+	TSharedPtr<IHttpRouter> httpRouter = httpServerModule.GetHttpRouter(ServerPort, true);
 
 	// If port already binded by another process, then this check must be failed
-	// !!! BUT !!!
-	// this check always true
-	// I don't no why...
 	if (httpRouter.IsValid())
 	{
 		// You can bind as many routes as you need
